@@ -155,4 +155,9 @@ public class NewAddressSteps {
         Assertions.assertEquals(successAlertDeletedAddress, isItGreenDeletionAlertText, "It should say 'Address successfully deleted!'");
 
     }
+
+    @And("I close browser")
+    public void iCloseBrowser() {
+        driver.quit();
+    }
 }

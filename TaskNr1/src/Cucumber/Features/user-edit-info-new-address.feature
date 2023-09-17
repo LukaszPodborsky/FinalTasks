@@ -12,6 +12,7 @@ Feature: User edit info
     And I verify created address through <expectedAlias> expectedAlias, <expectedAddress> expectedAddress, <expectedCity> expectedCity, <expectedZipCode> expectedZipCode, <expectedPhone> expectedPhone
     And I remove the address
     And I verify if the address is gone by receiving "Address successfully deleted!" alert
+    And I close browser
 
     Examples:
       | keywordAlias | keywordAddress  | keywordCity | keywordZipCode | keywordPhone | expectedAlias | expectedAddress | expectedCity | expectedZipCode | expectedPhone |
