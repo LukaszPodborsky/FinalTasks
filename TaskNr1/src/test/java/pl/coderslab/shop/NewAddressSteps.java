@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
 public class NewAddressSteps {
+
     private static WebDriver driver;
 
     @Given("I'm on mystore main page")
