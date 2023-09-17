@@ -94,6 +94,7 @@ public class NewAddressSteps {
 
     @And("There is successful message alert {string}")
     public void thereIsSuccessfulMessageAlert(String successAlertAddedAddress) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         WebElement isItGreenAlert = driver.findElement(By.className("alert-success"));
         String isItGreenAlertText = isItGreenAlert.getText();
         Assertions.assertEquals(successAlertAddedAddress, isItGreenAlertText, "It should say 'Address successfully added!' ");
@@ -101,10 +102,57 @@ public class NewAddressSteps {
 
     }
 
-    @And("I verify created address through {string} alias, {string} address, {string} city, {string} zipCode, {string} phone")
-    public void iVerifyNewAddressSheet() {
-        WebElement createdAddressInfo = driver.findElement(By.xpath("//*div[@class='address-body']/h4/address"));
+    @And("I verify created address through {string} expectedAlias, {string} expectedAddress, {string} expectedCity, {string} expectedZipCode, {string} expectedPhone")
+    public void iVerifyNewAddressSheet(String expectedAlias, String expectedAddress, String expectedCity, String expectedZipCode, String expectedPhone) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        driver.get("https://mystore-testlab.coderslab.pl/index.php?controller=addresses");
+       WebElement addressField = driver.findElement(By.xpath("//section[@id='wrapper']"));
+       String addressFieldText = addressField.getText();
+        Assertions.assertTrue(addressFieldText.contains(expectedAlias));
+        Assertions.assertTrue(addressFieldText.contains(expectedAddress));
+        Assertions.assertTrue(addressFieldText.contains(expectedCity));
+        Assertions.assertTrue(addressFieldText.contains(expectedZipCode));
+        Assertions.assertTrue(addressFieldText.contains(expectedPhone));
+
+
+    // //section/section/section/div[2]/a[2]
+
+        }
+
+
+        //        WebElement createdAddressInfoAlias = driver.findElement(By.linkText("//*[@h4]"));
+//        String createdAddressInfoAliasText = createdAddressInfoAlias.getText();
+//        System.out.println(createdAddressInfoAliasText);
+
+
+
+    @And("I remove the address")
+    public void iRemoveTheAddress() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.get("https://mystore-testlab.coderslab.pl/index.php?controller=addresses");
+        WebElement addressField = driver.findElement(By.xpath("//section[@id='wrapper']"));
+        String addressFieldText = addressField.getText();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+        if (addressFieldText.contains("Janek")) {
+            WebElement deleteBtn = driver.findElement(By.xpath("/html/body/main/section/div/div/section/section/div[2]/article/div[2]/a[2][@data-link-action='delete-address']"));
+            deleteBtn.click();
+        }
+//(By.xpath("/html/body/main/section/div/div/section/section/div[2]/article/div[2]/a[2][@data-link-action='delete-address']")) <-- działa!
+//                if (addressFieldText.contains("Janek")) {
+//            WebElement deleteBtn = driver.findElement(By.xpath("//section/div[2]/a[2][@data-link-action='delete-address']"));
+//            deleteBtn.click();
+//        }
+
 
     }
 
+    @And("I verify if the address is gone by receiving {string} alert")
+    public void iVerifyIfTheAddressIsGoneByReceivingAlert(String successAlertDeletedAddress) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        WebElement isItGreenDeletionAlert = driver.findElement(By.className("alert-success"));
+        String isItGreenDeletionAlertText = isItGreenDeletionAlert.getText();
+        Assertions.assertEquals(successAlertDeletedAddress, isItGreenDeletionAlertText, "It should say 'Address successfully deleted!'");
+
+    }
 }

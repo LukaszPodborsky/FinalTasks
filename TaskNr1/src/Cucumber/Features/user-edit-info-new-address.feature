@@ -9,9 +9,9 @@ Feature: User edit info
     And I create new address using <keywordAlias> alias, <keywordAddress> address, <keywordCity> city, <keywordZipCode> zipCode, <keywordPhone> phone
     Then I can see my new address
     And There is successful message alert "Address successfully added!"
-    And I verify created address through <expectedAlias> alias, <expectedAddress> address, <expectedCity> city, <expectedZipCode> zipCode, <expectedPhone> phone
+    And I verify created address through <expectedAlias> expectedAlias, <expectedAddress> expectedAddress, <expectedCity> expectedCity, <expectedZipCode> expectedZipCode, <expectedPhone> expectedPhone
     And I remove the address
-    And I verify if the address is gone
+    And I verify if the address is gone by receiving "Address successfully deleted!" alert
 
     Examples:
       | keywordAlias | keywordAddress  | keywordCity | keywordZipCode | keywordPhone | expectedAlias | expectedAddress | expectedCity | expectedZipCode | expectedPhone |
