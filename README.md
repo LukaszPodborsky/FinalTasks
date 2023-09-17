@@ -1,2 +1,0 @@
-# FinalTasks
-Zadania zaliczeniowe

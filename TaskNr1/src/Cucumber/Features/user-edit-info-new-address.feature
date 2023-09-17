@@ -17,5 +17,3 @@ Feature: User edit info
     Examples:
       | keywordAlias | keywordAddress  | keywordCity | keywordZipCode | keywordPhone | expectedAlias | expectedAddress | expectedCity | expectedZipCode | expectedPhone |
       | "Janek"      | "Oxford Street" | "London"    | "57-618"       | "666229920"  | "Janek"       | "Oxford Street" | "London"     | "57-618"        | "666229920"   |
-
-
