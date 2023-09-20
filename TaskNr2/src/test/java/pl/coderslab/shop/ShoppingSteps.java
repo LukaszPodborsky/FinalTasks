@@ -45,7 +45,6 @@ public class ShoppingSteps {
 
         WebElement signInSubmitBtn = driver.findElement(By.id("submit-login"));
         signInSubmitBtn.click();
-
     }
 
     @And("I verify user with {string} name")
@@ -59,7 +58,6 @@ public class ShoppingSteps {
     public void iGoToTheClothesTab() {
         driver.findElement(By.id("category-3")).click();
     }
-
 
     @And("I hover over Hummingbird Printed Sweater and check if it's {string} off")
     public void iHoverOverHummingbirdPrintedSweaterAndCheckIfItSOff(String sale) {
@@ -78,6 +76,5 @@ public class ShoppingSteps {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         WebElement quickViewBtn = driver.findElement(By.xpath("//*[@data-id-product='2']//i"));
         quickViewBtn.click();
-
     }
 }
