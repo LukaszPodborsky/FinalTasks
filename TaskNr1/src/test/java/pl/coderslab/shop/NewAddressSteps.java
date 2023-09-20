@@ -104,7 +104,6 @@ public class NewAddressSteps {
     public void iVerifyNewAddressSheet(String expectedAlias, String expectedAddress, String expectedCity, String expectedZipCode, String expectedPhone) {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-        driver.get("https://mystore-testlab.coderslab.pl/index.php?controller=addresses");
         WebElement addressField = driver.findElement(By.xpath("//section[@id='wrapper']"));
         String addressFieldText = addressField.getText();
 
@@ -119,7 +118,6 @@ public class NewAddressSteps {
     public void iRemoveTheAddress() {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.get("https://mystore-testlab.coderslab.pl/index.php?controller=addresses");
         WebElement addressField = driver.findElement(By.xpath("//section[@id='wrapper']"));
         String addressFieldText = addressField.getText();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
