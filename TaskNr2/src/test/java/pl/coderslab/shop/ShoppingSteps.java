@@ -46,7 +46,6 @@ public class ShoppingSteps {
         WebElement signInHomeBtn = driver.findElement(By.className("user-info"));
         signInHomeBtn.click();
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         WebElement emailInput = driver.findElement(By.id("field-email"));
         emailInput.click();
         emailInput.clear();
@@ -75,7 +74,6 @@ public class ShoppingSteps {
 
     @And("I hover over Hummingbird Printed Sweater and check if it's {string} off")
     public void iHoverOverHummingbirdPrintedSweaterAndCheckIfItSOff(String sale) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
         WebElement discountOnSweaterOnSearchClothes = driver.findElement(By.xpath("//*[@data-id-product='2']//li"));
         String discountOnSweaterOnSearchClothesText = discountOnSweaterOnSearchClothes.getText();
         Assertions.assertEquals(sale, discountOnSweaterOnSearchClothesText, "It should be -20% off");
@@ -83,7 +81,6 @@ public class ShoppingSteps {
 
     @And("I choose the product to quick-view it")
     public void iChooseTheProductToQuickViewIt() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         WebElement cursorHoverOverSweater = driver.findElement(By.xpath("//*[@data-id-product='2']"));
         Actions hoverOverSweater = new Actions(driver);
         hoverOverSweater.moveToElement(cursorHoverOverSweater).perform();
@@ -109,13 +106,12 @@ public class ShoppingSteps {
         By sizeList = By.id("group_1");
         wait.until(ExpectedConditions.visibilityOfElementLocated(sizeList));
         WebElement sizeDropDown = driver.findElement(By.id("group_1"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+
         Select sizeSelect = new Select(sizeDropDown);
         sizeSelect.selectByVisibleText(size);
     }
 
     @And("I choose {string} the amount of the selected product")
-    // czemu {string}, a nie {int}?| {int} się nie kuma z "examples" w pliku feature.
     public void iChooseQuantityTheAmountOfTheSelectedProduct(String quantity) {
         WebElement quantityInput = driver.findElement(By.id("quantity_wanted"));
         quantityInput.click();
@@ -147,16 +143,13 @@ public class ShoppingSteps {
         proceedToCheckoutBtn.click();
         WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(3));
         By nextCheckoutBtn = By.xpath("//*[@id='main']/div/div[2]/div[1]/div[2]/div/a");
-//        By nextCheckoutBtn = By.xpath("//*[@id='wrapper']//*[@class='cart-grid-right'][contains(text(), 'Proceed to checkout')]"); Czemu tak nie działa?
         wait1.until(ExpectedConditions.visibilityOfElementLocated(nextCheckoutBtn));
         WebElement nextProceedToCheckoutBtn = driver.findElement(By.xpath("//*[@id='main']/div/div[2]/div[1]/div[2]/div/a"));
-//        WebElement nextProceedToCheckoutBtn = driver.findElement(By.xpath("//*[@id='wrapper']//*[@class='cart-grid-right'][contains(text(), 'Proceed to checkout')]")); Czemu tak nie działa?
         nextProceedToCheckoutBtn.click();
     }
 
     @And("I validate my address: expectedName {string}, expectedAddress {string}, expectedCity {string}, expectedZipCode {string}, expectedCountry {string}, expectedPhone {string}")
     public void iValidateMyAddress(String expectedName, String expectedAddress, String expectedCity, String expectedZipCode, String expectedCountry, String expectedPhone) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         WebElement addressField = driver.findElement(By.xpath("//div[@class='address']"));
         String addressFieldText = addressField.getText();
         Assertions.assertTrue(addressFieldText.contains(expectedName));
@@ -178,9 +171,6 @@ public class ShoppingSteps {
 
     @And("I validate if self pick up radio box is checked")
     public void iValidateIfBoxIsChecked() {
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-//        By selfPickUpRadioBoxVisibility = By.xpath("//form[@id='js-delivery']//input[@id='delivery_option_8']");
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(selfPickUpRadioBoxVisibility));
         WebElement selfPickUpRadioBox = driver.findElement(By.xpath("//form[@id='js-delivery']//input[@id='delivery_option_8']"));
         Assertions.assertTrue(selfPickUpRadioBox.isSelected(), "Self pick up radio box should be selected");
         if (!selfPickUpRadioBox.isSelected()) {
@@ -201,15 +191,7 @@ public class ShoppingSteps {
         payByCheckRadioBox.click();
         WebElement termsOfServiceCheckbox = driver.findElement(By.id("conditions_to_approve[terms-and-conditions]"));
         termsOfServiceCheckbox.click();
-//    }
-//
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-//        By placeOrderBtnVisibility = By.id("payment-confirmation");
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(placeOrderBtnVisibility));
-//            WebElement placeOrderBtn = driver.findElement(By.xpath("//div[@id='payment-confirmation']//button[@type='submit']"));
-//            placeOrderBtn.click();
-//                                      Nie da się w jednym kroku
-//
+
     }
     @And("I capture the total price")
     public void iCaptureTheTotalPrice() {
